@@ -42,7 +42,7 @@ function Dashboard() {
               
               <li key={project.id}>
                 <Link to={{
-                  pathname: '/project',
+                  pathname: `/project/${project.id}`,
                   state: {
                     id: project.id,
                     title: project.title,

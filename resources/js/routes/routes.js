@@ -25,7 +25,7 @@ const routes = [
     fallback: Home
   },
   {
-    path: "/project",
+    path: "/project/:id",
     exact: true,
     auth: true,
     component: Project,

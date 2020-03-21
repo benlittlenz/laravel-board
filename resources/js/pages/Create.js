@@ -15,7 +15,7 @@ function Create() {
         const sendProject = Http.post(url, { title, description })
 
         const { data } = await sendProject
-        console.log(data)
+        //console.log(data)
 
         const newItem = {
             id: data.id,

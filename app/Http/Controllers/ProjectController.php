@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\ProjectResourceCollection;
 use App\Project;
+use App\Note;
 
 class ProjectController extends ApiController
 {

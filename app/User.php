@@ -19,7 +19,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password', 
     ];
 
     /**
@@ -51,6 +51,11 @@ class User extends Authenticatable implements JWTSubject
     public function projects() {
         return $this->hasMany(Project::class, 'owner_id')->orderBy('updated_at', 'desc');
     }
+
+    // public function company()
+    // {
+    //     return $this->belongsTo(Company::class);
+    // }
 
     /**
      * Encodes the user id and returns the unique hash.

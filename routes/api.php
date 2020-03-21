@@ -9,6 +9,10 @@ Route::post('/project', 'ProjectController@store');
 Route::patch('/project/{project}', 'ProjectController@update');
 Route::delete('/project/{project}', 'ProjectController@destroy');
 
+//Route::get('/project/{project}/note', 'NoteController@index');
+Route::get('/project/{project}/note', 'NoteController@show');
+Route::post('/project/{project}/note', 'NoteController@store');
+
 // Auth Endpoints
 Route::group([
     'prefix' => 'v1/auth'
