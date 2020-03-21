@@ -3,17 +3,6 @@
 use Illuminate\Http\Request;
 use App\Project;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group.
-|
-*/
-
 Route::get('/project/{project}', 'ProjectController@show');
 Route::get('/project', 'ProjectController@index');
 Route::post('/project', 'ProjectController@store');
