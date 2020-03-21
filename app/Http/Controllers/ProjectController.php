@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
+use App\Custom\Hasher;
+use App\Http\Controllers\APIController;
+
 use Illuminate\Http\Request;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\ProjectResourceCollection;
+use App\Project;
 
-class ProjectController extends Controller
+class ProjectController extends ApiController
 {
     public function show(Project $project): ProjectResource {
         return new ProjectResource($project);

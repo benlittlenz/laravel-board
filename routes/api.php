@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Project;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,12 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group.
 |
 */
+
+Route::get('/project/{project}', 'ProjectController@show');
+Route::get('/project', 'ProjectController@index');
+Route::post('/project', 'ProjectController@store');
+Route::patch('/project/{project}', 'ProjectController@update');
+Route::delete('/project/{project}', 'ProjectController@destroy');
 
 // Auth Endpoints
 Route::group([
