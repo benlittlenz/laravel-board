@@ -29,6 +29,7 @@ const checkAuth = state => {
     isAuthenticated: !!localStorage.getItem("access_token"),
     user: JSON.parse(localStorage.getItem("user"))
   });
+  console.log(localStorage.getItem("access_token"))
   if (state.isAuthenticated) {
     Http.defaults.headers.common.Authorization = `Bearer ${localStorage.getItem(
       "access_token"

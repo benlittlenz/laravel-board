@@ -48,6 +48,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(Todo::class);
     }
 
+    public function projects() {
+        return $this->hasMany(Project::class, 'owner_id')->orderBy('updated_at', 'desc');
+    }
+
     /**
      * Encodes the user id and returns the unique hash.
      *
@@ -99,9 +103,5 @@ class User extends Authenticatable implements JWTSubject
         $email = $this->getEmailForPasswordReset();
         $user = $this::where('email', $email)->first();
         $this->notify(new ResetPasswordNotification($token, $user->id));
-    }
-
-    public function projects() {
-        return $this->hasMany(Project::class, 'owner_id')->orderBy('updated_at', 'desc');
     }
 }

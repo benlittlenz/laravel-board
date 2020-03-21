@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\User;
 
 class Project extends Model
 {
@@ -11,7 +12,8 @@ class Project extends Model
 
     protected $fillable = [
         'title',
-        'description'
+        'description',
+        'owner_id',
     ];
 
     protected static function boot()
@@ -33,17 +35,12 @@ class Project extends Model
         return 'string';
     }
 
+    /**
+     * A Todo belongs to a User.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function owner() {
         return $this->belongsTo(User::class);
     }
-
-    // public function notes()
-    // {
-    //     return $this->hasMany(Notes::class);
-    // }
-
-    // public function addNote($body)
-    // {
-    //     return $this->notes()->create(compact('body'));
-    // }
 }

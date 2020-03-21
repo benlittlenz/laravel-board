@@ -7,8 +7,16 @@ import ResetPassword from "../pages/ResetPassword";
 import Archive from "../pages/Archive";
 import NoMatch from "../pages/NoMatch";
 import Project from "../pages/Project"
+import Create from "../pages/Create"
 
 const routes = [
+  {
+    path: "/create",
+    exact: true,
+    auth: true,
+    component: Create,
+    fallback: Home
+  },
   {
     path: "/",
     exact: true,

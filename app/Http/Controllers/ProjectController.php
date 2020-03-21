@@ -23,17 +23,40 @@ class ProjectController extends ApiController
         return new ProjectResourceCollection(Project::paginate());
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request) {
+        if (! $user = auth()->setRequest($request)->user()) {
+            return $this->responseUnauthorized();
+        }
 
         $attributes = $request->validate([
             'title' => 'required',
             'description' => 'required'
         ]);
-        $project = auth()->user()->projects()->create($project);
 
-        //$project = Project::create($request->all());
+        try {
+            $todo = Project::create([
+                'owner_id' => $user->id,
+                'title' => request('title'),
+                'description' => request('description'),
+            ]);
+            return response()->json([
+                'status' => 201,
+                'message' => 'Resource created.',
+                'id' => $todo->id
+            ], 201);
+        } catch (Exception $e) {
+            return $this->responseServerError('Error creating resource.');
+        }
+        //$project = auth()->user()->projects()->create($project);
+        // $project = Project::create($request->all());
 
-        return $project;
+        // return $project;
     }
 
     //TO BE PASSED AS RAW DATA
