@@ -6,6 +6,7 @@ import ForgotPassword from "../pages/ForgotPassword";
 import ResetPassword from "../pages/ResetPassword";
 import Archive from "../pages/Archive";
 import NoMatch from "../pages/NoMatch";
+import Project from "../pages/Project"
 
 const routes = [
   {
@@ -13,6 +14,13 @@ const routes = [
     exact: true,
     auth: true,
     component: Dashboard,
+    fallback: Home
+  },
+  {
+    path: "/project",
+    exact: true,
+    auth: true,
+    component: Project,
     fallback: Home
   },
   {
