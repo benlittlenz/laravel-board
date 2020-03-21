@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
+import Notes from './Notes'
+
 
 function Project(props) {
     const [state, setState] = useState([])
@@ -10,8 +12,13 @@ function Project(props) {
     console.log(props.location.state)
     return (
         <div>
-            <h1>{title}</h1>
+            <h1>{title} ggfdgdgfdf</h1>
             <p>{description}</p>
+
+            <div>
+                blahaaah
+                <Notes id={id}/>
+            </div>
         </div>
     )
 }

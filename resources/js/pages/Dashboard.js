@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import Http from "../Http";
 
 function Dashboard() {
@@ -36,8 +37,8 @@ function Dashboard() {
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
+        <>
           <ul>
-            ghfghghffgh
             {projectData.map(project => (
               
               <li key={project.id}>
@@ -59,45 +60,15 @@ function Dashboard() {
               
             ))}
           </ul>
+
+        </>
       )}
       
+
     </div>
   )
 
 }
-
-// class Dashboard extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     // Initial state.
-//     this.state = {
-//       project: null,
-//       error: false,
-//       data: [],
-//       projectData: []
-//     };
-
-//     // API endpoint.
-//     this.api = "/api/project";
-//   }
-
-//   componentDidMount() {
-//     Http.get(`${this.api}`)
-//       .then(response => {
-//         const { data } = response.data
-//         console.log(data)
-//       })
-//   }
-
-//   render() {
-//     return (
-//       <div>
-        
-//       </div>
-//     )
-//   }
-// }
 
 const mapStateToProps = state => ({
   isAuthenticated: state.Auth.isAuthenticated,
