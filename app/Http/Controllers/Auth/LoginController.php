@@ -2,38 +2,33 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\APIController;
 
 class LoginController extends APIController
 {
-
-    /**
-     * Get a JWT via given credentials.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function login()
+    public function __invoke(Request $request)
     {
-        $credentials = request(['email', 'password']);
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
 
-        if (! $token = auth()->attempt($credentials)) {
-            return $this->responseUnauthorized();
+        if (!$token = auth()->attempt($request->only(['email', 'password']))) {
+            return response()->json([
+                'errors' => [
+                    'email' => ['Sorry we couldn\'t sign you in with those details.']
+                ]
+            ], 422);
         }
 
-        // Get the user data.
-        $user = auth()->user();
-
-        return response()->json([
-            'status' => 200,
-            'message' => 'Authorized.',
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => array(
-                'id' => $user->hashid,
-                'name' => $user->name
-            )
-        ], 200);
+        return (new UserResource($request->user()))
+            ->additional([
+                'meta' => [
+                    'token' => $token
+                ]
+            ]);
     }
 }

@@ -8,6 +8,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use App\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Custom\Hasher;
 use App\Todo;
+use App\Company;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -108,5 +109,10 @@ class User extends Authenticatable implements JWTSubject
         $email = $this->getEmailForPasswordReset();
         $user = $this::where('email', $email)->first();
         $this->notify(new ResetPasswordNotification($token, $user->id));
+    }
+
+    public function company() {
+        return $this->belongsToMany(Company::class)
+            ->withTimeStamps();
     }
 }

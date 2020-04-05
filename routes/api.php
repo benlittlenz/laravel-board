@@ -17,7 +17,7 @@ Route::post('/project/{project}/note', 'NoteController@store');
 Route::group([
     'prefix' => 'v1/auth'
 ], function ($router) {
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', 'Auth\LoginController');
     Route::post('logout', 'Auth\LogoutController@logout');
     Route::post('register', 'Auth\RegisterController@register');
     Route::post('forgot-password', 'Auth\ForgotPasswordController@email');
