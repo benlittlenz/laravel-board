@@ -34,7 +34,7 @@ export const logout = () => {
 };
 
 export const getUser = () => {
-  return client('/api/me')
+  return client('/api/v1/auth/me')
     .then(({ data }) => data)
     .catch(() => null);
 };
