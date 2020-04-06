@@ -30,7 +30,7 @@ export const resetPassword = ({ token, email, password, password_confirmation })
 };
 
 export const logout = () => {
-  return client('/api/logout', { body: {} });
+  return client('/api/v1/auth/logout', { body: {} });
 };
 
 export const getUser = () => {
