@@ -90,6 +90,15 @@ function AuthNav () {
               </NavLink>
             </li>
             <li
+              onClick={closeMobileNav}
+              className="px-4 py-3 lg:py-0">
+              <NavLink
+                to={`/projects`}
+                className="text-2xl font-bold lg:text-sm lg:font-light capitalize text-sm text-gray-700 underline lg:no-underline">
+                Projects
+              </NavLink>
+            </li>
+            <li
               onClick={handleLogout}
               className="px-4 py-3 lg:py-0">
               <Link

@@ -15,6 +15,7 @@ function GuestRoute ({ component: Component, title, ...rest }) {
       render={props => authenticated
         ? <Redirect to={{ pathname: '/home', state: { from: props.location } }} />
         : <Component {...props} />
+        //<Component {...props} />
       }
     />
   );

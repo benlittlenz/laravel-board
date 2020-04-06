@@ -4,14 +4,14 @@ use Illuminate\Http\Request;
 use App\Project;
 
 Route::get('/project/{project}', 'ProjectController@show');
-Route::get('/project', 'ProjectController@index');
-Route::post('/project', 'ProjectController@store');
-Route::patch('/project/{project}', 'ProjectController@update');
-Route::delete('/project/{project}', 'ProjectController@destroy');
+Route::get('/projects', 'ProjectController@index');
+Route::post('/projects', 'ProjectController@store');
+Route::patch('/projects/{project}', 'ProjectController@update');
+Route::delete('/projects/{project}', 'ProjectController@destroy');
 
 //Route::get('/project/{project}/note', 'NoteController@index');
-Route::get('/project/{project}/note', 'NoteController@show');
-Route::post('/project/{project}/note', 'NoteController@store');
+Route::get('/projects/{project}/note', 'NoteController@show');
+Route::post('/projects/{project}/note', 'NoteController@store');
 
 // Auth Endpoints
 Route::group([

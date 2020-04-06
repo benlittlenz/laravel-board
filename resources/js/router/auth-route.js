@@ -8,6 +8,7 @@ import Footer from '../components/footer';
 import useDocumentTitle from '../components/document-title';
 
 function AuthRoute ({ component: Component, title, ...rest }) {
+  
   useDocumentTitle(title);
   let {authenticated} = useAuth();
 
@@ -18,7 +19,7 @@ function AuthRoute ({ component: Component, title, ...rest }) {
         if (!authenticated) {
           setIntendedUrl(props.location.pathname);
         }
-
+        console.log(props)
         return authenticated
           ? (
             <div className="flex flex-col min-h-screen">

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Projects() {
   const [projectData, setprojectData] = useState([]);
-  const url = 'http://laravel-react-bootstrap.test/api/project';
+  const url = 'http://laravel-react-bootstrap.test/api/projects';
 
 
 
@@ -19,17 +19,9 @@ function Projects() {
       fetch(url)
         .then((resp) => resp.json()) // Transform the data into json
         .then(function (data) {
-          console.log(data.data)
-          // const { data } = response.data
           setprojectData(data.data)
         })
-      // fetch(`${url}`)
-      //   .then(response => {
-      //     console.log('hi', response)
 
-      //     const { data } = response.data
-      //     setprojectData(data)
-      //   })
       setIsError(false);
     } catch (err) {
       console.error(err);
@@ -40,14 +32,14 @@ function Projects() {
   console.log('hey', projectData)
 
   return (
-    <div>
+    <div className="container p-2 mx-auto flex flex-col">
       jhgjhghgjhg
       {isError && <div>Something went wrong ...</div>}
 
       {isLoading ? (
         <div>Loading ...</div>
       ) : (
-          <>
+          <div >
             <div class="flex flex-col">
               <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                 <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
@@ -74,17 +66,30 @@ function Projects() {
                             <div class="flex items-center">
                               <div class="ml-4">
                                 <div class="text-sm leading-5 font-medium text-gray-900 break-all">
-                                  <Link to={{
-                                    pathname: `/project/${project.id}`,
-                                    state: {
-                                      id: project.id,
-                                      title: project.title,
-                                      description: project.description,
-                                      createdAt: project.created_at,
-                                      updatedAt: project.updated_at,
-                                    }
+                                  <Link
+                                    to={{ 
+                                      pathname: `/project/${project.id}`, 
+                                      state: {
+                                        id: project.id,
+                                        title: project.title,
+                                        description: project.description,
+                                        createdAt: project.created_at,
+                                        updatedAt: project.updated_at,
+                                     },
+                                      query: { id: project.id } }}
+                                    //to={`/projects/${project.id}`}
+                                  // to={{
+                                  //   pathname: `/project/${project.id}`,
+                                  //   state: {
+                                  //     id: project.id,
+                                  //     title: project.title,
+                                  //     description: project.description,
+                                  //     createdAt: project.created_at,
+                                  //     updatedAt: project.updated_at,
+                                  //   }
 
-                                  }}>
+                                  // }}
+                                  >
                                     <p key={project.id} class="break-words">
                                       {project.title}
                                     </p>
@@ -126,7 +131,7 @@ function Projects() {
               </div>
             </div>
 
-          </>
+          </div>
         )}
 
 
