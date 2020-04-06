@@ -12,6 +12,7 @@ import AuthRoute from './auth-route';
 import GuestRoute from './guest-route';
 import Projects from '../pages/projects'
 import Project from '../pages/project'
+import EditProject from '../pages/edit-project'
 import { useAuth } from '../context/auth';
 import FullPageSpinner from '../components/full-page-spinner';
 
@@ -31,6 +32,7 @@ function App () {
             <AuthRoute path="/home" component={Home} title="home"/>
             {/* <AuthRoute path="/project" component={Projects} title="projects" /> */}
             <AuthRoute path="/projects" component={Projects} title="projects" />
+            <AuthRoute exact path="/project/:id/edit" component={EditProject} title="edit project" />
             <AuthRoute exact path="/project/:id" component={Project} title="project" />
             <AuthRoute path="/profile/:id" component={Profile} title="profile"/>
             <Route component={NotFound}/>

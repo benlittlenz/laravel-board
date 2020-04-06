@@ -17,9 +17,9 @@ class NoteController extends Controller
 
     public function show($project): NoteResource {
         $notes = Note::all();
-        
+        //dd($notes);
         $list =  $notes->where('project_id', $project);
-        
+        //dd($list);
         return new NoteResource($list);
     }
 

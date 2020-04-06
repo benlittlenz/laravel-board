@@ -6,7 +6,7 @@ use App\Project;
 Route::get('/project/{project}', 'ProjectController@show');
 Route::get('/projects', 'ProjectController@index');
 Route::post('/projects', 'ProjectController@store');
-Route::patch('/projects/{project}', 'ProjectController@update');
+Route::patch('/project/{project}/edit', 'ProjectController@update');
 Route::delete('/projects/{project}', 'ProjectController@destroy');
 
 //Route::get('/project/{project}/note', 'NoteController@index');
