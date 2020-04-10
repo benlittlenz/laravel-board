@@ -2,9 +2,10 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 use App\User;
+use App\Company;
+use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
@@ -45,9 +46,19 @@ class Project extends Model
     }
 
 
-    public function notes()
+    // public function notes()
+    // {
+    //     return $this->hasMany(Project::class, 'project_id')->orderBy('updated_at', 'desc');
+    // }
+
+    public function company()
     {
-        return $this->hasMany(Project::class, 'project_id')->orderBy('updated_at', 'desc');
+        return $this->belongsTo(Company::class);
+    }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 
     // public function addNote($body)

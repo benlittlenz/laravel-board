@@ -50,7 +50,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function projects() {
-        return $this->hasMany(Project::class, 'owner_id')->orderBy('updated_at', 'desc');
+        return $this->belongsToMany(Project::class, 'owner_id')->orderBy('updated_at', 'desc');
     }
 
     // public function company()
@@ -112,7 +112,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function company() {
-        return $this->belongsToMany(Company::class)
+        return $this->belongsTo(Company::class)
             ->withTimeStamps();
     }
 }

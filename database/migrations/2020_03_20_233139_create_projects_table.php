@@ -14,16 +14,22 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->integer('owner_id')->unsigned();
+            $table->increments('id');
+            $table->unsignedInteger('company_id')->nullable();
             $table->string('title');
             $table->text('description');
             $table->timestamps();
 
-            $table->foreign('owner_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
+            // $table->foreign('company_id')
+            //     ->references('id')
+            //     ->on('companies')
+            //     ->onDelete('cascade');
+        });
+
+        Schema::create('project_user', function (Blueprint $table) {
+            $table->unsignedInteger('project_id');
+            $table->unsignedInteger('user_id');
+            $table->primary(['project_id', 'user_id']);
         });
     }
 
@@ -35,5 +41,6 @@ class CreateProjectsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('projects');
+        Schema::dropIfExists('project_user');
     }
 }
